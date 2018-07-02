@@ -2,18 +2,34 @@
 #-*- coding: utf-8 -*-
 
 import operator
-import ipdb
 
 def y(level):
+	def out_put(q, levels):
+		levels += 1
+		q = q[1:-1]
+		q = [str(x) for x in q]
+		ws = (levels - len(q))//2
+		print("{}{}".format("\t"*ws, "\t".join(q)))
+	q = [0, 1, 0]
+	out_put(q, level)
+	for i in range(level):
+		size = len(q)
+		prev = 0
+		for _ in range(size):
+			tmp = q.pop(0)
+			new = tmp + prev
+			q.append(new)
+			prev = tmp
+		q.append(0)
+		out_put(q, level)
+
+def yy(level):
 	q = [1]
-	ipdb.set_trace()
 	for i in range(level):
 		m = [0] + q
 		n = q + [0]
-		p = list(map(operator.add, m, n))
-		print(p)
-		q = p
+		q = list(map(operator.add, m, n))
+		print(q)
 
-y(3)
-
+yy(10)
 
