@@ -44,28 +44,17 @@ class Solution:
 		:rtype: str
 		"""
 
-		if not t.val:
-			return ""
 		def _tree2str(t):
-			if not t or not t.val:
-				return
-			print("--------" + str(t.val))
-			ret = str(t.val)
-			left = _tree2str(t.left)
-			right = _tree2str(t.right)
-			if left is None:
-				if right is None:
-					return ret
-				else:
-					f = "()({})".format(right)
+			if not t or t.val is None:
+				return ""
+			if t.right:
+				f = "{}({})({})".format(t.val, _tree2str(t.left), _tree2str(t.right))
+				return f
+			if t.left:
+				f = "{}({})".format(t.val, _tree2str(t.left))
+				return f
 			else:
-				if right:
-					f = "({})({})".format(left, right)
-				else:
-					f = "({})".format(left)
-			ret += f
-			print(ret)
-			return ret
+				return str(t.val)
 
 
 		ret = _tree2str(t)
@@ -73,6 +62,6 @@ class Solution:
 		return ret
 
 s = Solution()
-root = s.create([1, 2, 3, 4])
+root = s.create([0])
 s.print_tree(root)
 ret = s.tree2str(root)
