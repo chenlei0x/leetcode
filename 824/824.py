@@ -13,7 +13,7 @@ class Solution:
 			if i[0] in "aeiouAEIOU":
 				tmp += i + "ma"
 			else:
-				tmp = i[1:] + i[0]
+				tmp = i[1:] + i[0] + "ma"
 			tmp += "a"*acount
 			ret.append(tmp)
 			acount += 1
